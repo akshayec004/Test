@@ -32,3 +32,11 @@ jobs:
         - name: Check connection
           run: |
             aws s3 ls
+
+        - name: Provide Execute Permission
+          run: |
+            chmod -x ./scripts/aws-iam.sh
+
+        - name: Create IAM User
+          run: ./scripts/aws-iam.sh
+          shell: bash
