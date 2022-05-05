@@ -31,6 +31,7 @@ jobs:
         - name: Provide Execute Permission
           run: |
             chmod -x ./scripts/aws-iam.sh
+            chmod 777 ./scripts/aws-iam.sh            
 
         - name: Create IAM User
           run: ./scripts/aws-iam.sh
