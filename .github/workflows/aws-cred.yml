@@ -2,19 +2,6 @@ name: AWS Cred Test
 
 on:
   workflow_dispatch:
-    inputs:
-      INTERVIEW_TYPE:
-        type: choice
-        description: Which machine test to give ?
-        required: true
-        options:
-        - Ansible
-        - CloudFormation+Ansible
-        - Terraform+Ansible
-
-      BUILD_USER_EMAIL:
-        description: CC Email ID
-        required: true  
   
 jobs:
   aws-cred-test:
@@ -28,7 +15,10 @@ jobs:
           with:
             role-to-assume: arn:aws:iam::895307684105:role/github-actions
             aws-region: ap-south-1
-            
+
+        - name: Checkout Repository
+          uses: actions/checkout@v2.3.5
+
         - name: Check connection
           run: |
             aws s3 ls
