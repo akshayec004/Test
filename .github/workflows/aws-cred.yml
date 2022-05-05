@@ -18,4 +18,4 @@ jobs:
             
         - name: Check connection
           run: |
-            aws sts get-caller-identity --query 'Account' --output text
+            aws s3 ls
