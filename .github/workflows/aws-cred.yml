@@ -6,10 +6,13 @@ on:
 jobs:
   aws-cred-test:
     runs-on: ubuntu-latest 
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     steps:
-      - name: Check connection
-        run: |
-          aws sts get-caller-identity --query 'Account' --output text
+        - name: Configure AWS Credentials
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            role-to-assume: arn:aws:iam::895307684105:role/github-actions
+            aws-region: ap-south-1
+            
+        - name: Check connection
+          run: |
+            aws sts get-caller-identity --query 'Account' --output text
