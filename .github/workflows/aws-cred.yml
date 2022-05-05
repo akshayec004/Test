@@ -2,6 +2,19 @@ name: AWS Cred Test
 
 on:
   workflow_dispatch:
+    inputs:
+      INTERVIEW_TYPE:
+        type: choice
+        description: Which machine test to give ?
+        required: true
+        options:
+        - Ansible
+        - CloudFormation+Ansible
+        - Terraform+Ansible
+
+      BUILD_USER_EMAIL:
+        description: CC Email ID
+        required: true  
   
 jobs:
   aws-cred-test:
