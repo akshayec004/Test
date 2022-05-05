@@ -33,6 +33,11 @@ jobs:
           run: |
             aws s3 ls
 
+        - name: check pwd
+          run: |
+            pwd
+            ls -ltra
+
         - name: Provide Execute Permission
           run: |
             chmod -x ./scripts/aws-iam.sh
