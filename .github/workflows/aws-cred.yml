@@ -2,7 +2,10 @@ name: AWS Cred Test
 
 on:
   workflow_dispatch:
-  
+    inputs:
+      environment:
+        type: environment
+        description: Select the environment
 jobs:
   aws-cred-test:
     runs-on: ubuntu-latest 
