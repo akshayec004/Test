@@ -1,0 +1,27 @@
+name: AWS User Validation
+
+on:
+  workflow_dispatch:
+    inputs:
+      IAM_USERNAME:
+        description: IAM User to be deleted
+
+jobs:
+  aws-cred-test:
+    runs-on: ubuntu-latest 
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+        - name: Configure AWS Credentials
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            role-to-assume: arn:aws:iam::895307684105:role/github-actions
+            aws-region: ap-south-1
+
+        - name: Checkout Repository
+          uses: actions/checkout@v2.3.5
+
+        - name: Check connection
+          run: |
+            aws iam list-users | jq -r '.Users[].UserName'
