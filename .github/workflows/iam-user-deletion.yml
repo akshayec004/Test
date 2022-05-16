@@ -1,0 +1,39 @@
+name: AWS User Deletion
+
+on:
+  workflow_dispatch:
+    inputs:
+      IAM_USERNAME:
+        description: IAM User to be deleted
+
+jobs:
+  aws-cred-test:
+    runs-on: ubuntu-latest 
+    permissions:
+      id-token: write
+      contents: read
+    
+    env:
+      IAM_USERNAME: ${{ github.event.inputs.IAM_USERNAME }}
+      
+    steps:
+        - name: Configure AWS Credentials
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            role-to-assume: arn:aws:iam::895307684105:role/github-actions
+            aws-region: ap-south-1
+
+        - name: Checkout Repository
+          uses: actions/checkout@v2.3.5
+          
+        - name: Permission 
+          run: |
+            chmod u+x ./scripts/aws-iam-user-delete.sh
+            
+        - name: Execute delete script
+          run: ./scripts/aws-iam-user-delete.sh
+          shell: bash
+          
+        - name: Print value
+          run: |
+            echo "Value is ${{ env.SKIP_USER_DELETION }}"
