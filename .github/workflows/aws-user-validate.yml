@@ -33,3 +33,10 @@ jobs:
         - name: Execute script
           run: ./scripts/aws-iam-user.sh
           shell: bash
+          
+        - name: Run script
+          if: ${{ env.SKIP_USER_DELETION != 'True' }}
+          run: |
+            echo "Execute deletion script"
+
+
