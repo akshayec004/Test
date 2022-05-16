@@ -32,8 +32,4 @@ jobs:
             
         - name: Execute delete script
           run: ./scripts/aws-iam-user-delete.sh
-          shell: bash
-          
-        - name: Print value
-          run: |
-            echo "Value is ${{ env.SKIP_USER_DELETION }}"
+          shell: bash        
