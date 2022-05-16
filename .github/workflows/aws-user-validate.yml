@@ -35,7 +35,7 @@ jobs:
           shell: bash
           
         - name: Run script
-          if: ${{ env.SKIP_USER_DELETION != 'True' }}
+          if: ${{ env.SKIP_USER_DELETION!="True" }}
           run: |
             echo "Execute deletion script"
 
