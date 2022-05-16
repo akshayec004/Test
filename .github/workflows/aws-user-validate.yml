@@ -36,11 +36,9 @@ jobs:
           
         - name: Run script
           run: |
-            echo "Value is ${{ env.SKIP_USER_DELETION" }}"
+            echo "Value is ${{ env.SKIP_USER_DELETION }}"
           
         - name: Run script
           if: ${{ env.SKIP_USER_DELETION != 'True' }}
           run: |
             echo "Execute deletion script"
-
-
